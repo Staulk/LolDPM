@@ -1,0 +1,18 @@
+{
+  "/riot-api": {
+    "target": "https://euw1.api.riotgames.com",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/riot-api": ""
+    }
+  },
+  "/riot-api-regional": {
+    "target": "https://europe.api.riotgames.com",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/riot-api-regional": ""
+    }
+  }
+}
