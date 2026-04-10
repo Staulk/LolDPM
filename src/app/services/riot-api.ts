@@ -19,7 +19,7 @@ export class RiotApiService {
   // Récupère le PUUID depuis le Riot ID (europe)
   getAccountByRiotId(gameName: string, tagLine: string): Observable<any> {
     return this.http.get(
-      `/riot-api-regional/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`,
+      `/riot-regional/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`,
       { headers: this.headers }
     );
   }
@@ -51,7 +51,7 @@ export class RiotApiService {
   // Récupère les IDs des 10 dernières parties (europe)
   getMatchIds(puuid: string): Observable<any> {
     return this.http.get(
-      `/riot-api-regional/lol/match/v5/matches/by-puuid/${puuid}/ids?count=10`,
+      `/riot-regional/lol/match/v5/matches/by-puuid/${puuid}/ids?count=10`,
       { headers: this.headers }
     );
   }
@@ -59,7 +59,7 @@ export class RiotApiService {
   // Récupère le détail d'une partie (europe)
   getMatchDetail(matchId: string): Observable<any> {
     return this.http.get(
-      `/riot-api-regional/lol/match/v5/matches/${matchId}`,
+      `/riot-regional/lol/match/v5/matches/${matchId}`,
       { headers: this.headers }
     );
   }

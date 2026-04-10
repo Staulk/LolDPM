@@ -1,1 +1,25 @@
-<p>match-card works!</p>
+@if (player) {
+  <div class="match-card" [class.win]="isWin" [class.loss]="!isWin" (click)="onClick()">
+    <img [src]="championImgUrl" [alt]="player.championName" class="champion-img" />
+    <div class="match-info">
+      <span class="champion-name">{{ player.championName }}</span>
+      <span class="game-mode">{{ match.info.gameMode }}</span>
+    </div>
+    <div class="match-kda">
+      <span class="kda">{{ kda }}</span>
+      <span class="kda-label">KDA</span>
+    </div>
+    <div class="match-cs">
+      <span class="cs">{{ cs }}</span>
+      <span class="cs-label">CS</span>
+    </div>
+    <div class="match-duration">
+      <span>{{ duration }}</span>
+    </div>
+    <div class="match-result">
+      <span class="result-badge" [class.win]="isWin" [class.loss]="!isWin">
+        {{ isWin ? 'Victoire' : 'Défaite' }}
+      </span>
+    </div>
+  </div>
+}

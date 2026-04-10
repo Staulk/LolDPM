@@ -1,1 +1,42 @@
-<p>champion-list works!</p>
+<div class="champion-list-container">
+
+  <div class="champion-header">
+    <h2>Tous les Champions</h2>
+    <input
+      type="text"
+      [formControl]="searchControl"
+      placeholder="Rechercher un champion..."
+      class="search-input"
+    />
+  </div>
+
+  @if (loading) {
+    <p class="loading">Chargement des champions...</p>
+  }
+
+  @if (!loading) {
+    <p class="champion-count">{{ filteredChampions.length }} champions</p>
+
+    <div class="champions-grid">
+      @for (champion of filteredChampions; track champion.id) {
+        <div class="champion-card">
+          <img
+            [src]="dataDragon.getChampionSquareUrl(champion.id)"
+            [alt]="champion.name"
+            class="champion-img"
+          />
+          <span class="champion-name">{{ champion.name }}</span>
+          <span class="champion-title">{{ champion.title }}</span>
+          <div class="champion-tags">
+            @for (tag of champion.tags; track tag) {
+              <span class="tag">{{ tag }}</span>
+            }
+          </div>
+        </div>
+      } @empty {
+        <p class="no-results">Aucun champion trouvé</p>
+      }
+    </div>
+  }
+
+</div>

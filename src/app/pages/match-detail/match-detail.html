@@ -1,1 +1,119 @@
-<p>match-detail works!</p>
+<div class="match-detail-container">
+
+  @if (loading) {
+    <p class="loading">Chargement de la partie...</p>
+  }
+
+  @if (error) {
+    <p class="error">{{ error }}</p>
+  }
+
+  @if (match && !loading) {
+
+    <div class="match-header">
+      <h2>Détail de la partie</h2>
+      <span class="match-duration">Durée : {{ formatDuration(match.info.gameDuration) }}</span>
+      <span class="match-mode">{{ match.info.gameMode }}</span>
+    </div>
+
+    <!-- Équipe 1 (Blue) -->
+    <div class="team-section">
+      <div class="team-header" [class.win]="isTeamWin(100)" [class.loss]="!isTeamWin(100)">
+        <span>Équipe Bleue</span>
+        <span class="team-result">{{ getTeamResult(100) }}</span>
+      </div>
+      <div class="players-table">
+        <div class="table-header">
+          <span class="col-champ">Champion</span>
+          <span class="col-name">Joueur</span>
+          <span class="col-kda">KDA</span>
+          <span class="col-cs">CS</span>
+          <span class="col-level">Niv.</span>
+          <span class="col-damage">Dégâts</span>
+          <span class="col-spells">Sorts</span>
+          <span class="col-items">Items</span>
+        </div>
+        @for (player of team1; track player.puuid) {
+          <div class="player-row">
+            <span class="col-champ">
+              <img
+                [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragon['version'] + '/img/champion/' + player.championName + '.png'"
+                [alt]="player.championName"
+                class="champion-img"
+              />
+            </span>
+            <span class="col-name">{{ player.riotIdGameName || player.summonerName }}</span>
+            <span class="col-kda">{{ getKDA(player) }}</span>
+            <span class="col-cs">{{ player.totalMinionsKilled + player.neutralMinionsKilled }}</span>
+            <span class="col-level">{{ player.champLevel }}</span>
+            <span class="col-damage">{{ player.totalDamageDealtToChampions | number }}</span>
+            <span class="col-spells">
+              <img [src]="dataDragon.getSummonerSpellImageUrl(player.summoner1Id)" class="spell-img" alt="spell1" />
+              <img [src]="dataDragon.getSummonerSpellImageUrl(player.summoner2Id)" class="spell-img" alt="spell2" />
+            </span>
+            <span class="col-items">
+              @for (itemId of getItems(player); track $index) {
+                @if (itemId > 0) {
+                  <img [src]="dataDragon.getItemImageUrl(itemId)" class="item-img" [alt]="'item ' + itemId" />
+                } @else {
+                  <span class="item-empty"></span>
+                }
+              }
+            </span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Équipe 2 (Red) -->
+    <div class="team-section">
+      <div class="team-header" [class.win]="isTeamWin(200)" [class.loss]="!isTeamWin(200)">
+        <span>Équipe Rouge</span>
+        <span class="team-result">{{ getTeamResult(200) }}</span>
+      </div>
+      <div class="players-table">
+        <div class="table-header">
+          <span class="col-champ">Champion</span>
+          <span class="col-name">Joueur</span>
+          <span class="col-kda">KDA</span>
+          <span class="col-cs">CS</span>
+          <span class="col-level">Niv.</span>
+          <span class="col-damage">Dégâts</span>
+          <span class="col-spells">Sorts</span>
+          <span class="col-items">Items</span>
+        </div>
+        @for (player of team2; track player.puuid) {
+          <div class="player-row">
+            <span class="col-champ">
+              <img
+                [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragon['version'] + '/img/champion/' + player.championName + '.png'"
+                [alt]="player.championName"
+                class="champion-img"
+              />
+            </span>
+            <span class="col-name">{{ player.riotIdGameName || player.summonerName }}</span>
+            <span class="col-kda">{{ getKDA(player) }}</span>
+            <span class="col-cs">{{ player.totalMinionsKilled + player.neutralMinionsKilled }}</span>
+            <span class="col-level">{{ player.champLevel }}</span>
+            <span class="col-damage">{{ player.totalDamageDealtToChampions | number }}</span>
+            <span class="col-spells">
+              <img [src]="dataDragon.getSummonerSpellImageUrl(player.summoner1Id)" class="spell-img" alt="spell1" />
+              <img [src]="dataDragon.getSummonerSpellImageUrl(player.summoner2Id)" class="spell-img" alt="spell2" />
+            </span>
+            <span class="col-items">
+              @for (itemId of getItems(player); track $index) {
+                @if (itemId > 0) {
+                  <img [src]="dataDragon.getItemImageUrl(itemId)" class="item-img" [alt]="'item ' + itemId" />
+                } @else {
+                  <span class="item-empty"></span>
+                }
+              }
+            </span>
+          </div>
+        }
+      </div>
+    </div>
+
+  }
+
+</div>

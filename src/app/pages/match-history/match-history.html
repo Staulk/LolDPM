@@ -1,1 +1,28 @@
-<p>match-history works!</p>
+<div class="match-history-container">
+
+  <h2>Historique des parties</h2>
+  <p class="subtitle">{{ gameName }} — 10 dernières parties</p>
+
+  @if (loading) {
+    <p class="loading">Chargement de l'historique...</p>
+  }
+
+  @if (error) {
+    <p class="error">{{ error }}</p>
+  }
+
+  @if (!loading && !error) {
+    <div class="matches-list">
+      @for (match of matches; track match.metadata.matchId) {
+        <app-match-card
+          [match]="match"
+          [puuid]="puuid"
+          (matchClick)="onMatchClick($event)"
+        />
+      } @empty {
+        <p class="no-matches">Aucune partie trouvée</p>
+      }
+    </div>
+  }
+
+</div>
