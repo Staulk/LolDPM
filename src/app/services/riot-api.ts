@@ -10,7 +10,7 @@ export class RiotApiService {
   private http = inject(HttpClient);
 
   // Clé API Riot (à renouveler toutes les 24h)
-  private apiKey = 'Ma clé';
+  private apiKey = 'RGAPI-b467856a-1da4-4418-9822-e88883cfbe90';
 
   private get headers(): HttpHeaders {
     return new HttpHeaders({ 'X-Riot-Token': this.apiKey });
