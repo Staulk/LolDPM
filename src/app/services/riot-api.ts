@@ -33,9 +33,9 @@ export class RiotApiService {
   }
 
   // Récupère les rangs depuis le summonerId (euw1)
-  getRanks(summonerId: string): Observable<any> {
+  getRanks(puuid: string): Observable<any> {
     return this.http.get(
-      `/riot-api/lol/league/v4/entries/by-summoner/${summonerId}`,
+      `/riot-api/lol/league/v4/entries/by-puuid/${puuid}`,
       { headers: this.headers }
     );
   }

@@ -1,1 +1,70 @@
-<p>profile works!</p>
+<div class="profile-container">
+
+  @if (loading) {
+    <p class="loading">Chargement...</p>
+  }
+
+  @if (error) {
+    <p class="error">{{ error }}</p>
+  }
+
+  @if (summoner && !loading) {
+
+    <!-- Infos du joueur -->
+    <div class="summoner-card">
+      <img
+        [src]="dataDragon.getProfileIconUrl(summoner.profileIconId)"
+        alt="icon"
+        class="profile-icon"
+      />
+      <div class="summoner-info">
+        <h2>{{ gameName }}</h2>
+        <span class="level">Niveau {{ summoner.summonerLevel }}</span>
+      </div>
+    </div>
+
+    <!-- Rangs -->
+    <div class="section">
+      <h3>Rangs</h3>
+      <div class="ranks">
+        @for (rank of ranks; track rank.queueType) {
+          <div class="rank-card">
+            <span class="queue-type">
+              {{ rank.queueType === 'RANKED_SOLO_5x5' ? 'Solo/Duo' : 'Flex' }}
+            </span>
+            <span class="tier">{{ rank.tier }} {{ rank.rank }}</span>
+            <span class="lp">{{ rank.leaguePoints }} LP</span>
+            <span class="winrate">
+              {{ rank.wins }}W {{ rank.losses }}L
+              ({{ getWinrate(rank.wins, rank.losses) }}%)
+            </span>
+          </div>
+        } @empty {
+          <p>Aucun rang trouvé</p>
+        }
+      </div>
+    </div>
+
+    <!-- Maîtrises -->
+    <div class="section">
+      <h3>Top Champions</h3>
+      <div class="masteries">
+        @for (mastery of masteries; track mastery.championId) {
+          <div class="mastery-card">
+            <img
+              [src]="dataDragon.getChampionImageUrl(mastery.championId)"
+              alt="champion"
+              class="champion-icon"
+            />
+            <span class="mastery-level">Niveau {{ mastery.championLevel }}</span>
+            <span class="mastery-points">{{ mastery.championPoints | number }} pts</span>
+          </div>
+        } @empty {
+          <p>Aucune maîtrise trouvée</p>
+        }
+      </div>
+    </div>
+
+  }
+
+</div>
