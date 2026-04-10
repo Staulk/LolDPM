@@ -1,1 +1,14 @@
-<p>header works!</p>
+<header class="header">
+  <div class="header-logo" (click)="goHome()">
+    🎮 <span>LoL DPM</span>
+  </div>
+
+  <nav class="header-nav">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      Accueil
+    </a>
+    <a routerLink="/champions" routerLinkActive="active">
+      Champions
+    </a>
+  </nav>
+</header>
