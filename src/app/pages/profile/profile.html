@@ -22,6 +22,11 @@
         <span class="level">Niveau {{ summoner.summonerLevel }}</span>
       </div>
     </div>
+    <div class="history-link">
+      <a [routerLink]="['/summoner', 'euw', gameName, tagLine, 'matches']">
+        📋 Voir l'historique des parties
+      </a>
+    </div>
 
     <!-- Rangs -->
     <div class="section">

@@ -1,0 +1,121 @@
+.match-history-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.match-history-header h1 {
+  font-size: 28px;
+  color: white;
+}
+
+.match-history-header h1 span {
+  color: #c89b3c;
+}
+
+.loading, .error, .no-matches {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 60px;
+  color: #888;
+}
+
+.error { color: #e74c3c; }
+
+.matches-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.match-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  border-left: 4px solid transparent;
+}
+
+.match-card:hover {
+  transform: translateX(4px);
+}
+
+.match-card.win {
+  background: #1a2a1a;
+  border-left-color: #2ecc71;
+}
+
+.match-card.loss {
+  background: #2a1a1a;
+  border-left-color: #e74c3c;
+}
+
+.match-result {
+  width: 32px;
+  text-align: center;
+}
+
+.result-text {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.win .result-text { color: #2ecc71; }
+.loss .result-text { color: #e74c3c; }
+
+.champion-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+}
+
+.match-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 120px;
+}
+
+.champion-name {
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.game-mode {
+  color: #888;
+  font-size: 11px;
+}
+
+.match-kda {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.kda {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.deaths { color: #e74c3c; }
+
+.cs {
+  color: #888;
+  font-size: 12px;
+}
+
+.match-duration {
+  color: #888;
+  font-size: 13px;
+  min-width: 70px;
+  text-align: right;
+}

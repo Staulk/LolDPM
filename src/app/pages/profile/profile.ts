@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { RiotApiService } from '../../services/riot-api';
 import { DataDragon } from '../../services/data-dragon';
@@ -7,7 +8,7 @@ import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
-  imports: [DecimalPipe],
+  imports: [DecimalPipe, RouterLink],
   templateUrl: './profile.html',
   styleUrl: './profile.css'
 })
@@ -22,6 +23,7 @@ export class Profile implements OnInit {
   masteries: any[] = [];
   puuid: string = '';
   gameName: string = '';
+  tagLine: string = '';
   loading: boolean = true;
   error: string = '';
 
@@ -30,8 +32,8 @@ export class Profile implements OnInit {
       this.route.paramMap.pipe(
         switchMap(params => {
           this.gameName = params.get('name') ?? '';
-          const tag = params.get('tag') ?? '';
-          return this.riotApi.getAccountByRiotId(this.gameName, tag);
+          this.tagLine = params.get('tag') ?? '';
+          return this.riotApi.getAccountByRiotId(this.gameName, this.tagLine);
         }),
         switchMap(account => {
           this.puuid = account.puuid;

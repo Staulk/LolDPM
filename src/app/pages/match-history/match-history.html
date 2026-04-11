@@ -1,1 +1,51 @@
-<p>match-history works!</p>
+<div class="match-history-container">
+
+  <div class="match-history-header">
+    <h1>Historique de <span>{{ gameName }}</span></h1>
+  </div>
+
+  @if (loading) {
+    <p class="loading">Chargement des parties...</p>
+  }
+
+  @if (error) {
+    <p class="error">{{ error }}</p>
+  }
+
+  <div class="matches-list">
+    @for (match of matches; track match.matchId) {
+      <div class="match-card" [class.win]="match.win" [class.loss]="!match.win" (click)="goToDetail(match.matchId)">
+
+        <div class="match-result">
+          <span class="result-text">{{ match.win ? 'V' : 'D' }}</span>
+        </div>
+
+        <img
+          [src]="getChampionImageUrl(match.champion)"
+          [alt]="match.champion"
+          class="champion-img"
+        />
+
+        <div class="match-info">
+          <span class="champion-name">{{ match.champion }}</span>
+          <span class="game-mode">{{ match.gameMode }}</span>
+        </div>
+
+        <div class="match-kda">
+          <span class="kda">{{ match.kills }} / <span class="deaths">{{ match.deaths }}</span> / {{ match.assists }}</span>
+          <span class="cs">{{ match.cs }} CS</span>
+        </div>
+
+        <div class="match-duration">
+          {{ formatDuration(match.duration) }}
+        </div>
+
+      </div>
+    } @empty {
+      @if (!loading) {
+        <p class="no-matches">Aucune partie trouvée</p>
+      }
+    }
+  </div>
+
+</div>
