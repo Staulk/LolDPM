@@ -1,10 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { switchMap } from 'rxjs';
+import { DecimalPipe } from '@angular/common';
 import { RiotApiService } from '../../services/riot-api';
 import { DataDragon } from '../../services/data-dragon';
-import { DecimalPipe } from '@angular/common';
+import { Summoner } from '../../interfaces/summoner';
+import { Rank } from '../../interfaces/rank';
+import { Mastery } from '../../interfaces/mastery';
 
 @Component({
   selector: 'app-profile',
@@ -18,9 +20,9 @@ export class Profile implements OnInit {
   private riotApi = inject(RiotApiService);
   dataDragon = inject(DataDragon);
 
-  summoner: any = null;
-  ranks: any[] = [];
-  masteries: any[] = [];
+  summoner: Summoner | null = null;
+  ranks: Rank[] = [];
+  masteries: Mastery[] = [];
   puuid: string = '';
   gameName: string = '';
   tagLine: string = '';
@@ -55,11 +57,13 @@ export class Profile implements OnInit {
   }
 
   loadRanksAndMasteries(puuid: string) {
+    // Récupération des rangs
     this.riotApi.getRanks(puuid).subscribe({
       next: ranks => this.ranks = ranks,
       error: err => console.error(err)
     });
 
+    // Récupération des maîtrises
     this.riotApi.getTopMasteries(puuid).subscribe({
       next: masteries => this.masteries = masteries,
       error: err => console.error(err)

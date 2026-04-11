@@ -3,6 +3,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { RiotApiService } from '../../services/riot-api';
 import { DataDragon } from '../../services/data-dragon';
+import { Match } from '../../interfaces/match';
+
+// Interface pour l'affichage d'une partie dans la liste
+interface MatchSummary {
+  matchId: string;
+  champion: string;
+  kills: number;
+  deaths: number;
+  assists: number;
+  cs: number;
+  win: boolean;
+  duration: number;
+  gameMode: string;
+}
 
 @Component({
   selector: 'app-match-history',
@@ -17,9 +31,10 @@ export class MatchHistory implements OnInit {
   private riotApi = inject(RiotApiService);
   dataDragon = inject(DataDragon);
 
-  matches: any[] = [];
+  matches: MatchSummary[] = [];
   puuid: string = '';
   gameName: string = '';
+  tagLine: string = '';
   loading: boolean = true;
   error: string = '';
 
@@ -28,8 +43,8 @@ export class MatchHistory implements OnInit {
       this.route.paramMap.pipe(
         switchMap(params => {
           this.gameName = params.get('name') ?? '';
-          const tag = params.get('tag') ?? '';
-          return this.riotApi.getAccountByRiotId(this.gameName, tag);
+          this.tagLine = params.get('tag') ?? '';
+          return this.riotApi.getAccountByRiotId(this.gameName, this.tagLine);
         }),
         switchMap(account => {
           this.puuid = account.puuid;
@@ -52,9 +67,9 @@ export class MatchHistory implements OnInit {
 
     matchIds.forEach(matchId => {
       this.riotApi.getMatchDetail(matchId).subscribe({
-        next: match => {
+        next: (match: Match) => {
           const player = match.info.participants.find(
-            (p: any) => p.puuid === this.puuid
+            p => p.puuid === this.puuid
           );
           if (player) {
             this.matches.push({
@@ -90,6 +105,10 @@ export class MatchHistory implements OnInit {
 
   goToDetail(matchId: string) {
     this.router.navigate(['/match', matchId]);
+  }
+
+  goBack() {
+    this.router.navigate(['/summoner', 'euw', this.gameName, this.tagLine]);
   }
 
   getChampionImageUrl(championName: string): string {

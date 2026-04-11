@@ -7,6 +7,12 @@
   gap: 24px;
 }
 
+.match-history-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .match-history-header h1 {
   font-size: 28px;
   color: white;
@@ -14,6 +20,23 @@
 
 .match-history-header h1 span {
   color: #c89b3c;
+}
+
+.back-btn {
+  background: #1a1a1a;
+  color: #c89b3c;
+  border: 1px solid #c89b3c;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+  width: fit-content;
+}
+
+.back-btn:hover {
+  background: #c89b3c;
+  color: black;
 }
 
 .loading, .error, .no-matches {

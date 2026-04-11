@@ -1,1 +1,91 @@
-<p>match-detail works!</p>
+<div class="match-detail-container">
+
+  @if (loading) {
+    <p class="loading">Chargement de la partie...</p>
+  }
+
+  @if (error) {
+    <p class="error">{{ error }}</p>
+  }
+
+  @if (match && !loading) {
+
+    <div class="match-header">
+      <button class="back-btn" (click)="goBack()">← Retour</button>
+      <div class="match-meta">
+        <span class="game-mode">{{ match.info.gameMode }}</span>
+        <span class="duration">{{ formatDuration(match.info.gameDuration) }}</span>
+      </div>
+    </div>
+
+    <!-- Équipe Bleue -->
+    <div class="team-section">
+      <h2 class="team-title blue">
+        Équipe Bleue —
+        {{ blueTeam[0]?.win ? '✅ Victoire' : '❌ Défaite' }}
+      </h2>
+      <div class="team-table">
+        <div class="table-header">
+          <span>Champion</span>
+          <span>Joueur</span>
+          <span>KDA</span>
+          <span>CS</span>
+          <span>Dégâts</span>
+        </div>
+        @for (player of blueTeam; track player.puuid) {
+          <div class="player-row">
+            <img
+              [src]="dataDragon.getChampionImageUrl2(player.championName)"
+              [alt]="player.championName"
+              class="champion-img"
+            />
+            <span class="player-name">{{ player.riotIdGameName }}</span>
+            <span class="kda">
+              {{ player.kills }} /
+              <span class="deaths">{{ player.deaths }}</span>
+              / {{ player.assists }}
+            </span>
+            <span class="cs">{{ player.totalMinionsKilled }}</span>
+            <span class="damage">{{ player.totalDamageDealtToChampions | number }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Équipe Rouge -->
+    <div class="team-section">
+      <h2 class="team-title red">
+        Équipe Rouge —
+        {{ redTeam[0]?.win ? '✅ Victoire' : '❌ Défaite' }}
+      </h2>
+      <div class="team-table">
+        <div class="table-header">
+          <span>Champion</span>
+          <span>Joueur</span>
+          <span>KDA</span>
+          <span>CS</span>
+          <span>Dégâts</span>
+        </div>
+        @for (player of redTeam; track player.puuid) {
+          <div class="player-row">
+            <img
+              [src]="dataDragon.getChampionImageUrl2(player.championName)"
+              [alt]="player.championName"
+              class="champion-img"
+            />
+            <span class="player-name">{{ player.riotIdGameName }}</span>
+            <span class="kda">
+              {{ player.kills }} /
+              <span class="deaths">{{ player.deaths }}</span>
+              / {{ player.assists }}
+            </span>
+            <span class="cs">{{ player.totalMinionsKilled }}</span>
+            <span class="damage">{{ player.totalDamageDealtToChampions | number }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+  }
+
+</div>
