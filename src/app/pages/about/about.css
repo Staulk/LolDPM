@@ -1,0 +1,52 @@
+.about-container {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+h1 {
+  font-size: 40px;
+  color: #c89b3c;
+}
+
+.subtitle {
+  color: #888;
+  font-size: 16px;
+  margin-top: -16px;
+}
+
+h2 {
+  color: #c89b3c;
+  font-size: 22px;
+}
+
+.member-card {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.member-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #c89b3c;
+  color: black;
+  font-weight: bold;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+h3 {
+  color: white;
+  margin: 0;
+}

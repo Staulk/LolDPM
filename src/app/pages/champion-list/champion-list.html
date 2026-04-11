@@ -1,1 +1,28 @@
-<p>champion-list works!</p>
+<div class="champion-list-container">
+
+  <div class="champion-list-header">
+    <h1>Champions</h1>
+    <input
+      type="text"
+      placeholder="Rechercher un champion..."
+      [formControl]="searchControl"
+      class="search-input"
+    />
+  </div>
+
+  @if (loading) {
+    <p class="loading">Chargement des champions...</p>
+  }
+
+  <div class="champions-grid">
+    @for (champion of filteredChampions; track champion.name) {
+      <div class="champion-card">
+        <img [src]="champion.imageUrl" [alt]="champion.name" class="champion-img"/>
+        <span class="champion-name">{{ champion.name }}</span>
+      </div>
+    } @empty {
+      <p class="no-results">Aucun champion trouvé</p>
+    }
+  </div>
+
+</div>

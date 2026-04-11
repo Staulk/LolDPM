@@ -34,4 +34,8 @@ export class DataDragon {
   getProfileIconUrl(iconId: number): string {
     return `https://ddragon.leagueoflegends.com/cdn/${this.version}/img/profileicon/${iconId}.png`;
   }
+
+  getChampionImageUrl2(championName: string): string {
+  return `https://ddragon.leagueoflegends.com/cdn/${this.version}/img/champion/${championName}.png`;
+}
 }

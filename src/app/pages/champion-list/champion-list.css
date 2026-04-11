@@ -1,0 +1,82 @@
+.champion-list-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.champion-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.champion-list-header h1 {
+  font-size: 32px;
+  color: #c89b3c;
+}
+
+.search-input {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #1a1a1a;
+  color: white;
+  font-size: 14px;
+  width: 250px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #c89b3c;
+}
+
+.loading {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 100px;
+  color: #888;
+}
+
+.no-results {
+  color: #888;
+  text-align: center;
+  margin-top: 40px;
+  grid-column: 1 / -1;
+}
+
+.champions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 16px;
+}
+
+.champion-card {
+  background: #1a1a1a;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 8px;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, border 0.2s;
+  border: 1px solid transparent;
+}
+
+.champion-card:hover {
+  transform: translateY(-4px);
+  border-color: #c89b3c;
+}
+
+.champion-img {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+}
+
+.champion-name {
+  font-size: 11px;
+  color: #ccc;
+  text-align: center;
+}
