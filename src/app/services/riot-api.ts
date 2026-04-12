@@ -14,7 +14,7 @@ export class RiotApiService {
   private http = inject(HttpClient);
 
   // Ma clé Api
-  private apiKey = 'RGAPI-b467856a-1da4-4418-9822-e88883cfbe90';
+  private apiKey = 'RGAPI-bc526762-ca1a-4688-a060-b350960f58c5';
 
   private get headers(): HttpHeaders {
     return new HttpHeaders({ 'X-Riot-Token': this.apiKey });

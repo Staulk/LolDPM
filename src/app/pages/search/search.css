@@ -7,6 +7,19 @@
   gap: 16px;
 }
 
+.search-logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.search-logo-img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 3px solid #c89b3c;
+}
+
 h1 {
   font-size: 48px;
   margin: 0;

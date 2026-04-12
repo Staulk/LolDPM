@@ -12,21 +12,27 @@
 }
 
 .header-logo {
-  font-size: 20px;
-  font-weight: bold;
-  color: #c89b3c;
-  cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.header-logo-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #c89b3c;
 }
 
 .header-logo span {
+  font-size: 20px;
+  font-weight: bold;
   color: white;
 }
 
-.header-logo:hover {
-  color: #e0b44a;
+.header-logo:hover span {
+  color: #c89b3c;
 }
 
 .header-nav {
