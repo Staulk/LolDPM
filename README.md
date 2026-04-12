@@ -1,59 +1,44 @@
-# Loldpm
+# LoL DPM 
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.3.
+LoL DPM est notre application Angular de statistiques League of Legends inspirée de OP.GG.
+Elle permet de rechercher un joueur par son Riot ID et de consulter ses statistiques détaillées.
 
-## Development server
+## Fonctionnalités
 
-To start a local development server, run:
+- Recherche d'un joueur par Game Name et Tag Line (Le Game Name doit avoir 3 caractères minimum)
+- Affichage du profil : niveau, icône, rangs Solo/Duo et Flex
+- Top 5 des champions les plus maîtrisés
+- Historique des 10 dernières parties avec KDA, CS et durée
+- Détail complet d'une partie avec les 10 joueurs
+- Liste complète des champions avec recherche en temps réel
 
-```bash
-ng serve
-```
+### Clé API Riot
+- La clé API a une durée de vie de 24h, je vous prie donc de m'envoyer un mail ou un message teams pour que je puisse vous en générer une nouvelle. Il vous faudra juste la mettre à la place de l'ancienne ligne 17 dans `src/app/services/riot-api.ts`.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Lancement
 
-## Code scaffolding
+La commande utilisée pour lancer notre projet : 
+ng serve --proxy-config=proxy.conf.json
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Utilisation
 
-```bash
-ng generate component component-name
-```
+1. Entrez un Game Name et un Tag Line (Il faut que cela soit des comptes existantants voici une liste de comptes pour faire vos test :
+StaulkMB Tag:EUW
+Loupio Tag:7219
+brw Tag:999
+ShogunKC Tag:EUW
+ VicYTive Tag:4851
+ Pèdrito Tag:EUW
+ Si vous en avez besoin deplus vous pouvez en trouvez sur https://op.gg/fr mais recherchez bien dans le serveur EUW)
+2. Cliquez sur Rechercher
+3. Consultez le profil, les rangs et les champions maîtrisés
+4. Cliquez sur "Voir l'historique des parties" 
+5. Cliquez sur une partie pour voir le détail complet de cette partie
+6. Consultez la liste des champions via le menu Champions
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Équipe
 
-```bash
-ng generate --help
-```
+- DEFOSSEZ Erwan
+- PAHIMA Brice Armel
+- NIYOBUZIMA Daniel Béni
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
